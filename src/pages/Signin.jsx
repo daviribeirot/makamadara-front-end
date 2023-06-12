@@ -1,6 +1,6 @@
 import SigninComponent from "../components/SigninComponent";
 
-export default function Signin(){
+export function Signin(){
     return (
         <>
             <SigninComponent />

@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UserProvider from './contexts/UserContext';
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
+import { Signin, Signup, Home } from './pages';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './themes';
 import { ToastContainer } from 'react-toastify';
@@ -20,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
-            {/* <Route path="/home" element={<Home />} /> */}
+            <Route path="/home" element={<Home />} />
           </Routes>
         </UserProvider>
         </ThemeProvider>

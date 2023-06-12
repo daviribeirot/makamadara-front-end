@@ -21,8 +21,9 @@ export default function SigninComponent() {
             const userData = await signIn(email, password);
             setUser(userData);
             toast("Login realizado com sucesso!");
-            // navigate("/home");
+            navigate("/home");
         } catch (error) {
+            console.log(error);
             toast("Não foi possível fazer o login!");
         }
     }

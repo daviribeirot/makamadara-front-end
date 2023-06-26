@@ -1,6 +1,10 @@
-export function Historic(){
+import HistoricComponent from "../components/HistoricComponent";
+
+export function Historic() {
     return (
-        <h1>Em breve!</h1>
+        <>
+            <HistoricComponent />
+        </>
     )
-   
+
 }

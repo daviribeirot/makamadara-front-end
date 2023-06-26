@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import UserContext from '../contexts/UserContext';
 
 export default function useToken() {
-  const { user } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
 
-  return user.token;
+  return userData.token;
 }

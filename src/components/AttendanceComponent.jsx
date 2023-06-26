@@ -1,32 +1,37 @@
-import { Container, Box, TextField, Typography, Button } from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import StyledLink from "./StyledLink";
-import LogoComponent from './LogoComponent';
-import { useNavigate } from 'react-router';
-import { useContext, useState } from 'react';
-import { toast } from 'react-toastify';
-import { signIn } from '../services';
-import UserContext from '../contexts/UserContext';
+import LogoComponent from "./LogoComponent";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { createAttendance } from "../services";
+import { toast } from "react-toastify";
+import useToken from "../hooks/useToken";
 
-export default function SigninComponent() {
+export default function AttendanceComponent() {
+
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
     
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const { setUserData } = useContext(UserContext);
     const navigate = useNavigate();
-   
+    const token = useToken();
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
     async function handleSubmit(e){
         e.preventDefault();
 
         try {
-            const userData = await signIn(email, password);
-            setUserData(userData);
-            toast.success("Login realizado com sucesso!");
+            await createAttendance(name, description, config);
+            toast.success("Atendimento criado com sucesso!");
             navigate("/dashboard");
         } catch (error) {
-            console.log(error.response.data.message);
-            toast.error("Não foi possível fazer o login!");
+                console.log(error);
+                toast.error("Algo deu errado na criação do atendimento. Lembre-se de preencher todos os campos!");
+              }
         }
-    }
 
     return (
         <>
@@ -49,12 +54,12 @@ export default function SigninComponent() {
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email"
-                            name="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            autoComplete="email"
+                            id="nome"
+                            label="Seu nome"
+                            name="nome"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                            autoComplete="nome"
                             autoFocus
                             color="primary"
                             sx={{
@@ -64,17 +69,20 @@ export default function SigninComponent() {
                                 },
                             }}
                         />
+    
                         <TextField
                             margin="normal"
                             required
                             fullWidth
-                            name="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
+                            name="description"
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                            label="Descrição do seu problema"
+                            multiline
+                            rows={4}
+                            type="text"
+                            id="text"
+                            autoComplete="description"
                             color="primary"
                             sx={{ borderRadius: 1, }}
                         />
@@ -85,13 +93,13 @@ export default function SigninComponent() {
                             color="primary"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Marcar atendimento
                         </Button>
                     </Box>
 
                     <Box sx={{ mb: 1, p: 1 }}>
-                        <StyledLink to="/signup">
-                            <Typography variant="h7" color="white">Não possui cadastro? Cadastre-se aqui!</Typography>
+                        <StyledLink to="/dashboard">
+                            <Typography variant="h7" color="white">Voltar para a página principal!</Typography>
                         </StyledLink>
                     </Box>
 
@@ -100,4 +108,3 @@ export default function SigninComponent() {
         </>
     )
 }
-

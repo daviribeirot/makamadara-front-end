@@ -27,7 +27,8 @@ export function Dashboard() {
 
                     <List sx={{
                         marginTop: "30px",
-                    }}>
+                    }}
+                    >
                         <ListItem component={StyledLink} to="/enrollment" style={listStyle}>
                             <ListItemIcon>
                                 <Chalet sx={{

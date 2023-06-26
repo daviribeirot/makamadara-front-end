@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import UserProvider from './contexts/UserContext';
+import { UserProvider } from './contexts/UserContext';
 import { Signin, Signup, Dashboard, Enrollment, Attendance, Historic } from './pages';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './themes';

@@ -24,7 +24,7 @@ export default function SignupComponent() {
                 toast.success("Cadastro realizado com sucesso!");
                 navigate("/");
             } catch (error) {
-                console.log(error);
+                console.log(error.response.data.message);
                 toast.error("Não foi possível fazer o cadastro!");
             }
         }

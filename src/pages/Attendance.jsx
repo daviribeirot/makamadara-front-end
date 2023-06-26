@@ -1,5 +1,9 @@
+import AttendanceComponent from "../components/AttendanceComponent";
+
 export function Attendance() {
     return (
-        <h1>Em breve!</h1>
+        <>
+            <AttendanceComponent />
+        </>
     )
 }

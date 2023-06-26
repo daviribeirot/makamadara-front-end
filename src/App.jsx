@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import UserProvider from './contexts/UserContext';
-import { Signin, Signup, Home } from './pages';
+import { Signin, Signup, Dashboard, Enrollment, Attendance, Historic } from './pages';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './themes';
 import { ToastContainer } from 'react-toastify';
@@ -19,7 +19,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/enrollment" element={<Enrollment />} />
+            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/historic" element={<Historic />} />
           </Routes>
         </UserProvider>
         </ThemeProvider>

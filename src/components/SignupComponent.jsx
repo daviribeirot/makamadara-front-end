@@ -1,9 +1,10 @@
-import { Box, Button, Container, TextField } from "@mui/material";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import LogoComponent from "./LogoComponent";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { signUp } from "../services";
+import StyledLink from "./StyledLink";
 
 export default function SignupComponent() {
 
@@ -20,11 +21,11 @@ export default function SignupComponent() {
         } else {
             try {
                 await signUp(email, password);
-                toast("Cadastro realizado com sucesso!");
+                toast.success("Cadastro realizado com sucesso!");
                 navigate("/");
             } catch (error) {
                 console.log(error);
-                toast("Não foi possível fazer o cadastro!");
+                toast.error("Não foi possível fazer o cadastro!");
             }
         }
     }
@@ -103,6 +104,12 @@ export default function SignupComponent() {
                         >
                             Sign Up
                         </Button>
+                    </Box>
+
+                    <Box sx={{ mb: 1, p: 1 }}>
+                        <StyledLink to="/">
+                            <Typography variant="h7" color="white">Já possui cadastro? Efetue login aqui!</Typography>
+                        </StyledLink>
                     </Box>
                 </Box>
             </Container>

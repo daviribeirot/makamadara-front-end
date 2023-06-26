@@ -1,3 +1,6 @@
-export * from './Home'
+export * from './Dashboard'
 export * from './Signin'
 export * from './Signup'
+export * from './Enrollment'
+export * from './Attendance'
+export * from './Historic'

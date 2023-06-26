@@ -20,11 +20,11 @@ export default function SigninComponent() {
         try {
             const userData = await signIn(email, password);
             setUser(userData);
-            toast("Login realizado com sucesso!");
-            navigate("/home");
+            toast.success("Login realizado com sucesso!");
+            navigate("/dashboard");
         } catch (error) {
             console.log(error);
-            toast("Não foi possível fazer o login!");
+            toast.error("Não foi possível fazer o login!");
         }
     }
 
